@@ -5,7 +5,7 @@ defmodule Twitter.Tweets.Tweet do
   alias Twitter.Accounts.User
 
   @required [:text, :user_id]
-  @optional []
+  @optional [:parent_id]
 
   schema "tweets" do
     field :text, :string
