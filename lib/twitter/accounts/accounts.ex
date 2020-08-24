@@ -6,7 +6,7 @@ defmodule Twitter.Accounts do
   def create_user(attrs), do: UserQueries.create(attrs)
 
   def verify_password(password, %User{} = user) do
-    if Argon2.check_pass(user,password) do
+    if Argon2.check_pass(user, password) do
       {:ok, user}
     else
       {:error, "Passwords don't match"}
@@ -14,14 +14,16 @@ defmodule Twitter.Accounts do
   end
 
   defp email_password_auth(email, password) do
-    with {:ok, user}  <- UserQueries.get_by_email(email) do
-      verify_password(password, user)
+    case UserQueries.get_by_email(email) do
+       {:ok, user} -> verify_password(password, user)
+       nil -> {:error, :unauthorized}
     end
   end
 
   def auth_with_email_password(email, password) do
-    with {:ok, user} <- email_password_auth(email,password) do
-      Guardian.encode_and_sign(user)
+    with {:ok, user} <- email_password_auth(email, password),
+         {:ok, token} <- Guardian.encode_and_sign(user) do
+      {:ok, token}
     else
       _ -> {:error, :unauthorized}
     end

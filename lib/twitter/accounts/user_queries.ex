@@ -14,10 +14,10 @@ defmodule Twitter.Accounts.UserQueries do
   end
 
   def get_by_email(email) when is_binary(email) do
-    with  user  <- Repo.get_by(User, email: email) do
-      {:ok, user}
-    else nil ->  {:error, "get_by_email error"}
+    case Repo.get_by(User, email: email) do
+      {:ok, user} -> {:ok, user}
+      _ -> nil
     end
   end
-
+  
 end

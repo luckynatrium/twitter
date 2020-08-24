@@ -20,13 +20,12 @@ defmodule Twitter.Accounts.User do
     timestamps()
   end
 
-  def changeset(user,attrs) do
+  def changeset(user, attrs) do
     user
     |> cast(attrs, @required ++ @optional)
     |> validate_required(@required)
     |> put_password_hash()
   end
-
 
   def put_password_hash(%Changeset{valid?: true, changes: %{password: password}} = changeset) do
     change(changeset, Argon2.add_hash(password))

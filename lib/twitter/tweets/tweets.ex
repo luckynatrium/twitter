@@ -6,6 +6,4 @@ defmodule Twitter.Tweets do
   def recent_tweets(), do: TweetsQuery.recent()
 
   def get_replies(params), do: String.to_integer(params["tweets_id"]) |> TweetsQuery.replies()
-
-
 end

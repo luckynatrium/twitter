@@ -16,5 +16,4 @@ defmodule TwitterWeb.TweetsView do
       inserted_at: tweet.inserted_at
     }
   end
-
 end

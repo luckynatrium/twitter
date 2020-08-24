@@ -25,6 +25,4 @@ defmodule Twitter.Tweets.Tweet do
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:parent_id)
   end
-
-
 end

@@ -19,12 +19,12 @@ defmodule TwitterWeb.Router do
     get "/", PageController, :index
   end
 
-
   scope "/api", TwitterWeb do
     pipe_through :api
 
     resources "/users", UsersController, only: [:create]
     post "/users/sign_in", UsersController, :sign_in
+
     resources "/tweets", TweetsController, only: [:create, :index] do
       get "/replies", TweetsController, :replies
     end

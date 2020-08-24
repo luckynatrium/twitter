@@ -28,7 +28,7 @@ config :phoenix, :json_library, Jason
 
 config :twitter, Twitter.Guardian,
        issuer: "Twitter",
-       secret_key: "0M0WJqywTBiJUS1qvywlIKIAQjKYPvhB+K41Pv+NMGJulhNWqGzgeRK7u9BNfkMg"
+       secret_key: System.get_env("GUARDIAN_SECRET_KEY")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

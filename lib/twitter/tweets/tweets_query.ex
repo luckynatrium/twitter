@@ -19,5 +19,4 @@ defmodule Twitter.Tweets.TweetsQuery do
     query = from tw in Tweet, where: ^tweet_id == tw.id, preload: :replies
     Repo.all(query)
   end
-
 end

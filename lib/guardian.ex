@@ -14,11 +14,10 @@ defmodule Twitter.Guardian do
   def resource_from_claims(%{} = claims) do
     id = claims["sub"]
     resource = Twitter.Accounts.UserQueries.get_by_id(id)
-    {:ok,  resource}
+    {:ok, resource}
   end
 
   def resource_from_claims(_claims) do
     {:error, :reason_for_error}
   end
-
 end
