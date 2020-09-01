@@ -11,8 +11,7 @@ defmodule Twitter.Guardian do
     {:error, :reason_for_error}
   end
 
-  def resource_from_claims(%{} = claims) do
-    id = claims["sub"]
+  def resource_from_claims(%{"sub" => id}) do
     resource = Twitter.Accounts.UserQueries.get_by_id(id)
     {:ok, resource}
   end

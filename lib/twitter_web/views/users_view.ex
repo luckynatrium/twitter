@@ -9,8 +9,6 @@ defmodule TwitterWeb.UsersView do
   end
 
   def render("jwt.json", %{jwt: jwt}) do
-    %{
-      jwt: jwt
-    }
+    %{jwt: jwt}
   end
 end
