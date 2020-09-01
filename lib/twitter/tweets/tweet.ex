@@ -13,6 +13,7 @@ defmodule Twitter.Tweets.Tweet do
     field :likes, :integer
 
     has_many :replies, Twitter.Tweets.Tweet, foreign_key: :parent_id
+    many_to_many :liked_by, User, join_through: "tweets_users"
 
     belongs_to :user, User
 

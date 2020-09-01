@@ -1,7 +1,8 @@
 defmodule Twitter.Accounts.UserQueries do
-
   alias Twitter.Accounts.User
   alias Twitter.Repo
+
+  import Ecto.Query
 
   def create(attrs \\ %{}) do
     %User{}
@@ -19,5 +20,16 @@ defmodule Twitter.Accounts.UserQueries do
       _ -> nil
     end
   end
-  
+
+  def get_liked_tweets(user_id) do
+    user =
+      Repo.one(
+        from(User,
+          where: [id: ^user_id],
+          preload: [:liked]
+        )
+      )
+
+    user.liked
+  end
 end

@@ -23,4 +23,11 @@ defmodule TwitterWeb.UsersController do
            |> json(%{error: "Login error"})
     end
   end
+
+  def liked_tweets(conn, %{"users_id" => user_id}) do
+    conn
+    |> put_view(TwitterWeb.TweetsView)
+    |> render( "index.json",  %{tweets: Accounts.UserQueries.get_liked_tweets(user_id)})
+
+  end
 end

@@ -1,6 +1,7 @@
 defmodule Twitter.Tweets.TweetsQuery do
   alias Twitter.Repo
   alias Twitter.Tweets.Tweet
+  alias Twitter.Accounts.User
 
   import Ecto.Query
 
@@ -22,10 +23,22 @@ defmodule Twitter.Tweets.TweetsQuery do
 
   @spec add_likes(any, any) :: any
   def add_likes(tweet_id, user_id) do
-    tweet = Repo.get!(Tweet, tweet_id)
+    with tweet <- Repo.get!(Tweet, tweet_id) do
+      save_likes_sender tweet, user_id
+      tweet
+      |> Ecto.Changeset.change(%{likes: tweet.likes + 1})
+      |> Repo.update()
+    end
+
+  end
+
+  def save_likes_sender(tweet, user_id) do
+    user = Repo.get!(User, user_id)
     tweet
-    |> Ecto.Changeset.change(%{likes: tweet.likes + 1})
-    |> Repo.update()
+    |> Repo.preload([:replies, :liked_by])
+    |> Ecto.Changeset.change
+    |> Ecto.Changeset.put_assoc(:liked_by, [user])
+    |> Repo.update!()
   end
 
 end
