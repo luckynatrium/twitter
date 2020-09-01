@@ -5,11 +5,12 @@ defmodule Twitter.Tweets.Tweet do
   alias Twitter.Accounts.User
 
   @required [:text, :user_id]
-  @optional [:parent_id]
+  @optional [:parent_id, :likes]
 
   schema "tweets" do
     field :text, :string
     field :parent_id, :integer
+    field :likes, :integer
 
     has_many :replies, Twitter.Tweets.Tweet, foreign_key: :parent_id
 

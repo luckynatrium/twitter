@@ -13,7 +13,11 @@ defmodule TwitterWeb.TweetsView do
     %{
       id: tweet.id,
       text: tweet.text,
+      likes: tweet.likes,
       inserted_at: tweet.inserted_at
     }
+  end
+  def render("like.json", %{}) do
+    %{ok: "ok"}
   end
 end

@@ -19,4 +19,13 @@ defmodule Twitter.Tweets.TweetsQuery do
     query = from tw in Tweet, where: ^tweet_id == tw.id, preload: :replies
     Repo.all(query)
   end
+
+  @spec add_likes(any, any) :: any
+  def add_likes(tweet_id, user_id) do
+    tweet = Repo.get!(Tweet, tweet_id)
+    tweet
+    |> Ecto.Changeset.change(%{likes: tweet.likes + 1})
+    |> Repo.update()
+  end
+
 end

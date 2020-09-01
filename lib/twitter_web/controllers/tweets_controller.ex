@@ -19,4 +19,9 @@ defmodule TwitterWeb.TweetsController do
       render(conn, "index.json", %{replies: replies})
     end
   end
+
+  def like(conn, attrs) do
+    Tweets.like_tweet(attrs)
+    render(conn,"like.json", %{})
+  end
 end
