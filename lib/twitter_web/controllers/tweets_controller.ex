@@ -1,6 +1,6 @@
 defmodule TwitterWeb.TweetsController do
   use TwitterWeb, :controller
-  
+
   alias Twitter.Tweets
 
   def create(conn, params) do
@@ -11,7 +11,7 @@ defmodule TwitterWeb.TweetsController do
 
   def index(conn, _) do
     tweets = Tweets.recent_tweets()
-    render(conn,"index.json",%{tweets: tweets})
+    render(conn, "index.json", %{tweets: tweets})
   end
 
   def replies(conn, params) do
