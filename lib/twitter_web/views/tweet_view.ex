@@ -1,5 +1,6 @@
 defmodule TwitterWeb.TweetsView do
   use TwitterWeb, :view
+  alias Twitter.Tweets.TweetsQuery
 
   def render("index.json", %{tweets: tweets}) do
     render_many(tweets, __MODULE__, "show.json", as: :tweet)
@@ -13,7 +14,7 @@ defmodule TwitterWeb.TweetsView do
     %{
       id: tweet.id,
       text: tweet.text,
-      likes: tweet.likes,
+      likes: TweetsQuery.number_of_likes(tweet),
       inserted_at: tweet.inserted_at
     }
   end

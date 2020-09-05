@@ -16,7 +16,7 @@ defmodule Twitter.Accounts.User do
     field :bio, :string
 
     has_many :tweets, Tweet
-    many_to_many :liked, Twitter.Tweets.Tweet, join_through: "tweets_users"
+    many_to_many :liked, Twitter.Tweets.Tweet, join_through: "likes"
 
     timestamps()
   end

@@ -25,9 +25,6 @@ defmodule Twitter.Tweets.TweetsQuery do
   def add_likes(tweet_id, user_id) do
     with tweet <- Repo.get!(Tweet, tweet_id) do
       save_likes_sender tweet, user_id
-      tweet
-      |> Ecto.Changeset.change(%{likes: tweet.likes + 1})
-      |> Repo.update()
     end
 
   end
@@ -39,6 +36,16 @@ defmodule Twitter.Tweets.TweetsQuery do
     |> Ecto.Changeset.change
     |> Ecto.Changeset.put_assoc(:liked_by, [user])
     |> Repo.update!()
+  end
+
+  def number_of_likes(tweet) do
+      Repo.one(
+        from(l in "likes",
+          where: [tweet_id: ^tweet.id],
+          select: count(l.id)
+        )
+      )
+
   end
 
 end
