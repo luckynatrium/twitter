@@ -23,15 +23,16 @@ defmodule TwitterWeb.Router do
     pipe_through :api
 
 
-    resources "/users", UsersController, only: [:create] do
-      get "/liked", UsersController, :liked_tweets
-    end
+    resources "/users", UsersController, only: [:create]
 
     post "/users/sign_in", UsersController, :sign_in
 
-    post "/tweet/like", TweetsController, :like
+    post "/tweets/like", LikesController, :create
+    get "/tweets/liked", LikesController, :liked_tweets
+
     resources "/tweets", TweetsController, only: [:create, :index] do
       get "/replies", TweetsController, :replies
+
     end
   end
 
