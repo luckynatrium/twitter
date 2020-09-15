@@ -3,13 +3,14 @@ defmodule Twitter.Tweets.Likes.Like do
   import Ecto.Changeset
 
   alias Twitter.Accounts.User
+  alias Twitter.Tweets
 
   @required [:user_id, :tweet_id]
   @optional []
 
   schema "likes" do
 
-    belongs_to :liked, Twitter.Tweets.Tweet, foreign_key: :tweet_id
+    belongs_to :liked, Tweet, foreign_key: :tweet_id
     belongs_to :liked_by, User, foreign_key: :user_id
 
 

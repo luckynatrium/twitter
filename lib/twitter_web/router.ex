@@ -27,8 +27,8 @@ defmodule TwitterWeb.Router do
 
     post "/users/sign_in", UsersController, :sign_in
 
-    post "/tweets/like", LikesController, :create
-    get "/tweets/liked", LikesController, :liked_tweets
+    post "/tweets/like", TweetsController, :like
+    get "/tweets/liked", TweetsController, :liked_tweets
 
     resources "/tweets", TweetsController, only: [:create, :index] do
       get "/replies", TweetsController, :replies

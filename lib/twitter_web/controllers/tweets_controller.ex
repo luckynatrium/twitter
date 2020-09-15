@@ -21,7 +21,12 @@ defmodule TwitterWeb.TweetsController do
   end
 
   def like(conn, attrs) do
-    Tweets.like_tweet(attrs)
+    Tweets.create_like(attrs)
     render(conn,"like.json", %{})
+  end
+
+  def liked_tweets(conn, %{"user_id" => user_id}) do
+    conn
+    |> render("index.json", %{tweets: Tweets.liked_tweets(user_id)})
   end
 end

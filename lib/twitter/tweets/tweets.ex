@@ -1,5 +1,6 @@
 defmodule Twitter.Tweets do
   alias Twitter.Tweets.TweetsQuery
+  alias Twitter.Tweets.Likes.LikesQuery
   require Logger
 
   def create_tweet(attrs), do: TweetsQuery.create(attrs)
@@ -7,5 +8,8 @@ defmodule Twitter.Tweets do
 
   def get_replies(params), do: String.to_integer(params["tweets_id"]) |> TweetsQuery.replies()
 
-  def like_tweet(%{"tweet_id" => tweet_id, "user_id" => user_id}), do: TweetsQuery.add_likes(tweet_id, user_id)
+  def create_like(attrs), do: LikesQuery.create(attrs)
+
+  def liked_tweets(user_id), do: LikesQuery.get_liked_tweets(user_id)
+
 end

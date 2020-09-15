@@ -3,7 +3,6 @@ defmodule Twitter.Tweets.Likes.LikesQuery do
   import Ecto.Query
 
   alias Twitter.Repo
-  alias Twitter.Accounts.User
   alias Twitter.Tweets.Likes.Like
   alias Twitter.Tweets.Tweet
 
