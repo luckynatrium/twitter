@@ -3,6 +3,7 @@ defmodule Twitter.Tweets.Tweet do
   import Ecto.Changeset
 
   alias Twitter.Accounts.User
+  alias Twitter.Tweets.Like
 
   @required [:text, :user_id]
   @optional [:parent_id]
@@ -10,8 +11,11 @@ defmodule Twitter.Tweets.Tweet do
   schema "tweets" do
     field :text, :string
     field :parent_id, :integer
+    field :likes_amount, :integer, virtual: true
 
     has_many :replies, Twitter.Tweets.Tweet, foreign_key: :parent_id
+
+    has_many :likes, Like, foreign_key: :tweet_id
 
     belongs_to :user, User
 
@@ -25,4 +29,5 @@ defmodule Twitter.Tweets.Tweet do
     |> foreign_key_constraint(:user_id)
     |> foreign_key_constraint(:parent_id)
   end
+
 end
