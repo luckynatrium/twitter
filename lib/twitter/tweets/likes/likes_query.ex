@@ -1,10 +1,11 @@
-defmodule Twitter.Tweets.Likes.LikesQuery do
+defmodule Twitter.Tweets.LikesQuery do
 
   import Ecto.Query
 
   alias Twitter.Repo
-  alias Twitter.Tweets.Likes.Like
+  alias Twitter.Tweets.Like
   alias Twitter.Tweets.Tweet
+
 
   def create(attrs \\ %{}) do
     %Like{}
@@ -17,8 +18,10 @@ defmodule Twitter.Tweets.Likes.LikesQuery do
       from t in Tweet,
       join: l in assoc(t, :likes),
       where: l.user_id == ^user_id,
-      preload: [likes: l]
+      group_by: t.id,
+      select_merge: %{likes_amount: count(l.id)}
     Repo.all(query)
   end
+
 
 end

@@ -1,6 +1,6 @@
 defmodule Twitter.Tweets do
   alias Twitter.Tweets.TweetsQuery
-  alias Twitter.Tweets.Likes.LikesQuery
+  alias Twitter.Tweets.LikesQuery
   require Logger
 
   def create_tweet(attrs), do: TweetsQuery.create(attrs)

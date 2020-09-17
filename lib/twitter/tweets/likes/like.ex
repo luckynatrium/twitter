@@ -1,4 +1,4 @@
-defmodule Twitter.Tweets.Likes.Like do
+defmodule Twitter.Tweets.Like do
   use Ecto.Schema
   import Ecto.Changeset
 
