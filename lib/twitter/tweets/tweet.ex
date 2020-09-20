@@ -13,7 +13,7 @@ defmodule Twitter.Tweets.Tweet do
     field :parent_id, :integer
     field :likes_amount, :integer, virtual: true
 
-    has_many :replies, Twitter.Tweets.Tweet, foreign_key: :parent_id
+    has_many :replies, Tweet, foreign_key: :parent_id
 
     has_many :likes, Like, foreign_key: :tweet_id
 

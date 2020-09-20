@@ -24,6 +24,8 @@ defmodule TwitterWeb.Router do
 
 
     resources "/users", UsersController, only: [:create]
+    post "/users/follow", UsersController, :follow
+    get "/feed", UsersController, :folowee_tweets
 
     post "/users/sign_in", UsersController, :sign_in
 

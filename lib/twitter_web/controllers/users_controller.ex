@@ -1,6 +1,7 @@
 defmodule TwitterWeb.UsersController do
   use TwitterWeb, :controller
   alias Twitter.Accounts
+  alias Twitter.Tweets
 
   require Logger
 
@@ -27,7 +28,17 @@ defmodule TwitterWeb.UsersController do
   def liked_tweets(conn, %{"users_id" => user_id}) do
     conn
     |> put_view(TwitterWeb.TweetsView)
-    |> render( "index.json",  %{tweets: Accounts.UserQueries.get_liked_tweets(user_id)})
+    |> render( "index.json",  %{tweets: Tweets.liked_tweets(user_id)})
+  end
 
+  def follow(conn, attrs) do
+    Accounts.create_follower(attrs)
+    render(conn, "ok.json", %{})
+  end
+
+  def folowee_tweets(conn, %{"user_id" => user_id}) do
+    conn
+    |> put_view(TwitterWeb.TweetsView)
+    |> render("index.json", %{tweets: Accounts.followees_tweets(user_id)})
   end
 end

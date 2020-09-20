@@ -11,4 +11,8 @@ defmodule TwitterWeb.UsersView do
   def render("jwt.json", %{jwt: jwt}) do
     %{jwt: jwt}
   end
+
+  def render("ok.json", %{}) do
+    %{ok: "ok"}
+  end
 end

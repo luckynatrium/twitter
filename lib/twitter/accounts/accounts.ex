@@ -1,9 +1,14 @@
 defmodule Twitter.Accounts do
+  alias Twitter.Accounts.User.FollowersQuery
   alias Twitter.Accounts.UserQueries
   alias Twitter.Accounts.User
   alias Twitter.Guardian
 
   def create_user(attrs), do: UserQueries.create(attrs)
+
+  def create_follower(attrs), do: FollowersQuery.create(attrs)
+
+  def followees_tweets(user_id), do: FollowersQuery.get_followees_tweets(user_id)
 
   def verify_password(password, %User{} = user) do
     if Argon2.check_pass(user, password) do
@@ -28,4 +33,5 @@ defmodule Twitter.Accounts do
       _ -> {:error, :unauthorized}
     end
   end
+
 end

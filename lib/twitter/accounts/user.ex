@@ -18,7 +18,8 @@ defmodule Twitter.Accounts.User do
 
     has_many :tweets, Tweet
     has_many :liked, Like, foreign_key: :user_id
-
+    has_many :followers, User, foreign_key: :follow_id
+    has_many :followees, User, foreign_key: :user_id
     timestamps()
   end
 
