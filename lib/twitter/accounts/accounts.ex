@@ -8,7 +8,7 @@ defmodule Twitter.Accounts do
 
   def create_follower(attrs), do: FollowersQuery.create(attrs)
 
-  def followees_tweets(user_id), do: FollowersQuery.get_followees_tweets(user_id)
+  def followees_tweets(user_id), do: FollowersQuery.feed(user_id)
 
   def verify_password(password, %User{} = user) do
     if Argon2.check_pass(user, password) do
