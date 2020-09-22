@@ -14,20 +14,19 @@ defmodule Twitter.Tweets.TweetsQuery do
   def recent() do
     query =
       from tweet in Tweet,
-      join: l in assoc(tweet, :likes),
       order_by: [desc: tweet.inserted_at]
-
-    query |> add_likes_amount |> Repo.all()
+    query
+    |> add_likes_amount
+    |> Repo.all
   end
 
   def replies(tweet_id) do
     query =
       from tw in Tweet,
-      where: ^tweet_id == tw.id,
-      join: l in assoc(tw, :likes),
-      preload: [:replies, :likes]
-      
-    query |> add_likes_amount |> Repo.all()
+      where: ^tweet_id == tw.parent_id
+    query
+    |> add_likes_amount
+    |> Repo.all()
   end
 
   def add_likes_amount(query) do

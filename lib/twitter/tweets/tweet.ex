@@ -4,6 +4,7 @@ defmodule Twitter.Tweets.Tweet do
 
   alias Twitter.Accounts.User
   alias Twitter.Tweets.Like
+  alias Twitter.Tweets.Tweet
 
   @required [:text, :user_id]
   @optional [:parent_id]

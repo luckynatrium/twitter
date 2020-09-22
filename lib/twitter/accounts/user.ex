@@ -2,6 +2,7 @@ defmodule Twitter.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Twitter.Accounts.User
   alias Twitter.Tweets.Tweet
   alias Twitter.Tweets.Like
   alias Ecto.Changeset

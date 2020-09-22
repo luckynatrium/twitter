@@ -32,10 +32,8 @@ defmodule TwitterWeb.Router do
     post "/tweets/like", TweetsController, :like
     get "/tweets/liked", TweetsController, :liked_tweets
 
-    resources "/tweets", TweetsController, only: [:create, :index] do
-      get "/replies", TweetsController, :replies
-
-    end
+    resources "/tweets", TweetsController, only: [:create, :index]
+    get "tweet/replies", TweetsController, :replies
   end
 
   # Enables LiveDashboard only for development

@@ -3,7 +3,7 @@ defmodule Twitter.Tweets.Like do
   import Ecto.Changeset
 
   alias Twitter.Accounts.User
-  alias Twitter.Tweets
+  alias Twitter.Tweets.Tweet
 
   @required [:user_id, :tweet_id]
   @optional []

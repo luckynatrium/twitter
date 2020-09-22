@@ -1,7 +1,7 @@
-defmodule Twitter.Accounts.User.FollowersQuery do
+defmodule Twitter.Accounts.FollowersQuery do
 
   alias Twitter.Repo
-  alias Twitter.Accounts.User.Follower
+  alias Twitter.Accounts.Follower
   alias Twitter.Tweets.Tweet
   alias Twitter.Tweets.TweetsQuery
   alias Twitter.Tweets.Like
@@ -32,7 +32,9 @@ defmodule Twitter.Accounts.User.FollowersQuery do
         where: f.follower_id == ^user_id,
         join: l in assoc(tw, :likes)
 
-      query |> TweetsQuery.add_likes_amount()
+      query
+      |> TweetsQuery.add_likes_amount()
+      |> Repo.all()
   end
 
   def get_followees_liked_tweets(user_id) do
@@ -43,7 +45,9 @@ defmodule Twitter.Accounts.User.FollowersQuery do
       join: f in Follower,
       on: f.user_id == l.user_id,
       where: f.follower_id == ^user_id
-    query |> TweetsQuery.add_likes_amount()
+    query
+    |> TweetsQuery.add_likes_amount()
+    |> Repo.all()
   end
 
 end

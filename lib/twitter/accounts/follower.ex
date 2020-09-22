@@ -1,4 +1,4 @@
-defmodule Twitter.Accounts.User.Follower do
+defmodule Twitter.Accounts.Follower do
 
   use Ecto.Schema
   import Ecto.Changeset

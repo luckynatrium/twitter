@@ -1,5 +1,5 @@
 defmodule Twitter.Accounts do
-  alias Twitter.Accounts.User.FollowersQuery
+  alias Twitter.Accounts.FollowersQuery
   alias Twitter.Accounts.UserQueries
   alias Twitter.Accounts.User
   alias Twitter.Guardian

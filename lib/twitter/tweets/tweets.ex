@@ -6,7 +6,7 @@ defmodule Twitter.Tweets do
   def create_tweet(attrs), do: TweetsQuery.create(attrs)
   def recent_tweets(), do: TweetsQuery.recent()
 
-  def get_replies(params), do: String.to_integer(params["tweets_id"]) |> TweetsQuery.replies()
+  def get_replies(params), do: String.to_integer(params["tweet_id"]) |> TweetsQuery.replies()
 
   def create_like(attrs), do: LikesQuery.create(attrs)
 
